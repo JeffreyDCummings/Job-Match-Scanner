@@ -51,7 +51,7 @@ def skill_list():
      'simulation', 'folium', 'api', 'geospatial', 'signal processing', 'speech', 'pipeline',\
      'bash', 'unix', 'osx', 'linux', 'logistic regression', 'linear regression', 'jupyter',\
      'latex', 'json', 'html', 'dash', 'stacking', 'stack', 'bs', 'bachelor', 'validate',\
-     'validation', 'css', 'xml', 'team', 'predictive'])
+     'validation', 'css', 'xml', 'team', 'predictive', 'a b test'])
 
 def post_files_search():
     """ Searches current directory for all job posting text files, those with "job_post.txt" """
@@ -184,7 +184,7 @@ def main():
     res_text = extract_text(RESUME)
     res_text = text_proc(res_text, symbols, printable)
     resume_final, resume_list = lemma(res_text, stop_words, wordnet_lemmatizer)
-
+    print(resume_list)
     ds_skills = skill_list()
     skill_dict = [dict.fromkeys(ds_skills, 0) for _ in range(len(post_files))]
 
@@ -202,8 +202,8 @@ def main():
 
     words_df = tf_idf(filtered_postings)
 
-    for index in range(len(skill_dict)):
-        skill_matcher(index, title[index], resume_dict, resume_list, skill_dict[index], words_df)
+    for index, job in enumerate(title):
+        skill_matcher(index, job, resume_dict, resume_list, skill_dict[index], words_df)
 
     top_tf_idf(words_df, company_list)
 
