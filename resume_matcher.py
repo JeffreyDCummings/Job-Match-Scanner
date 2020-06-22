@@ -184,7 +184,7 @@ def main():
     res_text = extract_text(RESUME)
     res_text = text_proc(res_text, symbols, printable)
     resume_final, resume_list = lemma(res_text, stop_words, wordnet_lemmatizer)
-    print(resume_list)
+    
     ds_skills = skill_list()
     skill_dict = [dict.fromkeys(ds_skills, 0) for _ in range(len(post_files))]
 
