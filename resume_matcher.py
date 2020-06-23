@@ -22,7 +22,7 @@ N = 20
 ##How many top tf-idf terms to output for each job posting
 TOP_COUNT = 12
 
-RESUME = 'Jeff_Cummings_Resume.pdf'
+RESUME = 'Srikiran_Chandrasekaran_Final.pdf'
 
 def skill_list():
     """ User defined data science skills set. """
@@ -51,7 +51,10 @@ def skill_list():
      'simulation', 'folium', 'api', 'geospatial', 'signal processing', 'speech', 'pipeline',\
      'bash', 'unix', 'osx', 'linux', 'logistic regression', 'linear regression', 'jupyter',\
      'latex', 'json', 'html', 'dash', 'stacking', 'stack', 'bs', 'bachelor', 'validate',\
-     'validation', 'css', 'xml', 'team', 'predictive', 'a b test'])
+     'validation', 'css', 'xml', 'team', 'predictive', 'a b', 'a b test', 'a b testing',\
+     'survival analysis', 'kaplan meier', 'cox regression', 'random survival forest',\
+     'marketing', 'advertisement', 'matlab', 'pca', 'umap', 't sne', 'k nn', 'dbscan',\
+     'hdbscan', 'k means'])
 
 def post_files_search():
     """ Searches current directory for all job posting text files, those with "job_post.txt" """
@@ -67,6 +70,7 @@ def word_processing():
     stop_words.update(['behind', 'get', 'exceed', 'problems', 'role', 'experience',\
      'process', 'always', 'nice', 'available', 'partner', 'work', 'status', 'etc', 'use',\
       'able', 'change', 'consistently', 'similar'])
+    stop_words.remove('a')
     return stop_words, symbols, printable
 
 def text_proc(text_in, symbols, printable):
@@ -184,7 +188,7 @@ def main():
     res_text = extract_text(RESUME)
     res_text = text_proc(res_text, symbols, printable)
     resume_final, resume_list = lemma(res_text, stop_words, wordnet_lemmatizer)
-    
+
     ds_skills = skill_list()
     skill_dict = [dict.fromkeys(ds_skills, 0) for _ in range(len(post_files))]
 
